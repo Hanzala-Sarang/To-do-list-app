@@ -1,6 +1,6 @@
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container")
-
+const cpyBtn = document.getElementById("cpy-btn")
 function addTask(){
 
     if (inputBox.value == ''){
@@ -28,6 +28,14 @@ listContainer.addEventListener("click", function(e){
         saveData()
     }
 },false)
+
+cpyBtn.addEventListener("click",()=>{
+    navigator.clipboard.writeText(inputBox.value)
+    cpyBtn.innerHTML = '<i class="fa-solid fa-check"></i>'
+    setTimeout(()=>{
+        cpyBtn.innerHTML = '<i class="fa-solid fa-copy"></i>'
+    },3000)
+})
 
 function saveData(){
     localStorage.setItem("task",listContainer.innerHTML)
